@@ -1,37 +1,35 @@
 #!/bin/bash
 
-## clear.bat
-#del src\com\example\testapp\R.java
-#del *.keystore
-#del /s /f /q bin\*.*
-#rmdir /s /q obj
-#md obj
-rm src/com/example/testapp/R.java
-rm *.keystore
-rm bin/*
-#read -p 'clean done.   Press [Enter] key to continue...'
-
 export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 export ANDROID_HOME=/home/maick/Android/Sdk
 export DEV_HOME=`pwd`
 
-export JACK_JAR=$ANDROID_HOME/build-tools/27.0.3/jack.jar
-export AAPT_PATH=$ANDROID_HOME/build-tools/27.0.3/aapt
-export DX_PATH=$ANDROID_HOME/build-tools/27.0.3/dx
 export ANDROID_JAR=$ANDROID_HOME/platforms/android-21/android.jar
+export ANDROID_TOOLS=$ANDROID_HOME/build-tools/27.0.3
+export JACK_JAR=$ANDROID_TOOLS/jack.jar
+export AAPT_PATH=$ANDROID_TOOLS/aapt
+export DX_PATH=$ANDROID_TOOLS/dx
 export ADB=$ANDROID_HOME/platform-tools/adb
 export JAVAVM=$JAVA_HOME/bin/java
  
-export PACKAGE_PATH=com/example/testapp
-export PACKAGE=com.example.testapp
+export PACKAGE_APP=testapp
+export PACKAGE_PATH=com/example/$PACKAGE_APP
+export PACKAGE=com.example.$PACKAGE_APP
 export MAIN_CLASS=MainActivity
+
+rm $DEV_HOME/src/$PACKAGE_PATH/R.java
+rm $DEV_HOME/*.keystore
+rm -rd $DEV_HOME/bin
+rm -rd $DEV_HOME/obj
+mkdir $DEV_HOME/bin
+mkdir $DEV_HOME/obj
 
 echo 'creating R.java...'
 $AAPT_PATH package -f -m -S $DEV_HOME/res -J $DEV_HOME/src -M $DEV_HOME/AndroidManifest.xml -I $ANDROID_JAR
 #read -p 'Must be created "R.java".   Press [Enter] key to continue...'
 
 echo 'running Jack ToolChain...'
-$JAVAVM -jar $JACK_JAR --output-dex $DEV_HOME/bin -cp $ANDROID_JAR -D jack.java.source.version=1.8 $DEV_HOME/src/com/example/testapp/R.java $DEV_HOME/src/com/example/testapp/MainActivity.java
+$JAVAVM -jar $JACK_JAR --output-dex $DEV_HOME/bin -cp $ANDROID_JAR -D jack.java.source.version=1.8 $DEV_HOME/src/$PACKAGE_PATH/R.java $DEV_HOME/src/$PACKAGE_PATH/MainActivity.java
 #read -p '"Jack ToolChain" done.   Press [Enter] key to continue...'
 echo 'Jack ToolChain done'
 

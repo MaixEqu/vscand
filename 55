@@ -1,0 +1,13 @@
+#!/bin/bash
+
+export DEV_HOME=`pwd`
+export PACKAGE_PATH=com/example/testapp
+
+rm $DEV_HOME/src/$PACKAGE_PATH/R.java
+rm $DEV_HOME/*.keystore
+rm -rd $DEV_HOME/bin
+rm -rd $DEV_HOME/obj
+mkdir $DEV_HOME/bin
+mkdir $DEV_HOME/obj
+#read -p 'clean done.   Press [Enter] key to continue...'
+

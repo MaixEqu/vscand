@@ -13,7 +13,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
 
         Button button = new Button(this);
-        button.setText("Big button (J2S, v.0.4, r3, mint-w)");
+        button.setText("Big button (J2S, v.0.4, r4, mint-h)");
 
         button.setOnClickListener(v -> {
             new AlertDialog.Builder(MainActivity.this)

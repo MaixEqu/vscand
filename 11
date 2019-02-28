@@ -1,15 +1,17 @@
 #!/bin/bash
 
-export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
-export ANDROID_HOME=/home/maick/Android/Sdk
 export DEV_HOME=`pwd`
 
+export ANDROID_HOME=/home/maick/Android/Sdk
 export ANDROID_JAR=$ANDROID_HOME/platforms/android-21/android.jar
 export ANDROID_TOOLS=$ANDROID_HOME/build-tools/27.0.3
+export ADB=$ANDROID_HOME/platform-tools/adb
 export JACK_JAR=$ANDROID_TOOLS/jack.jar
 export AAPT_PATH=$ANDROID_TOOLS/aapt
 export DX_PATH=$ANDROID_TOOLS/dx
-export ADB=$ANDROID_HOME/platform-tools/adb
+
+#export JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
+export JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
 export JAVAVM=$JAVA_HOME/bin/java
  
 export PACKAGE_APP=testapp
